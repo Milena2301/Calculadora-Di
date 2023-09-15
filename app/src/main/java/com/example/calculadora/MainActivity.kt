@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val text_number: TextView = findViewById(R.id.txt_number)
 
-        val coma: Button =findViewById(R.id.buttoncoma)
+        val coma: Button = findViewById(R.id.buttoncoma)
         val plus: Button = findViewById(R.id.buttonplus)
         val rest: Button = findViewById(R.id.buttonRest)
         val div: Button = findViewById(R.id.buttonDiv)
@@ -40,81 +40,81 @@ class MainActivity : AppCompatActivity() {
 
         //click number0
         button0.setOnClickListener {
-            if(decimal){
+            if (decimal) {
                 result += 0
-            }else{
+            } else {
                 result += 0
             }
             text_number.text = result
         }
-        button1.setOnClickListener{
-            if(decimal){
+        button1.setOnClickListener {
+            if (decimal) {
                 result += 1
-            }else{
+            } else {
                 result += 1
             }
             text_number.text = result
         }
-        button2.setOnClickListener{
-            if(decimal){
+        button2.setOnClickListener {
+            if (decimal) {
                 result += 2
-            }else{
+            } else {
                 result += 2
             }
             text_number.text = result
         }
-        button3.setOnClickListener{
-            if(decimal){
+        button3.setOnClickListener {
+            if (decimal) {
                 result += 3
-            }else{
+            } else {
                 result += 3
             }
             text_number.text = result
         }
-        button4.setOnClickListener{
-            if(decimal){
+        button4.setOnClickListener {
+            if (decimal) {
                 result += 4
-            }else{
+            } else {
                 result += 4
             }
             text_number.text = result
         }
-        button5.setOnClickListener{
-            if(decimal){
+        button5.setOnClickListener {
+            if (decimal) {
                 result += 5
-            }else{
+            } else {
                 result += 5
             }
             text_number.text = result
         }
-        button6.setOnClickListener{
-            if(decimal){
+        button6.setOnClickListener {
+            if (decimal) {
                 result += 6
-            }else{
+            } else {
                 result += 6
             }
             text_number.text = result
         }
-        button7.setOnClickListener{
-            if(decimal){
+        button7.setOnClickListener {
+            if (decimal) {
                 result += 7
-            }else{
+            } else {
                 result += 7
             }
             text_number.text = result
         }
-        button8.setOnClickListener{
-            if(decimal){
+        button8.setOnClickListener {
+            if (decimal) {
                 result += 8
-            }else{
+            } else {
                 result += 8
             }
             text_number.text = result
         }
-        button9.setOnClickListener{
-            if(decimal){
+        button9.setOnClickListener {
+            if (decimal) {
                 result += 9
-            }else{
+            } else {
                 result += 9
             }
             text_number.text = result
@@ -148,8 +148,33 @@ class MainActivity : AppCompatActivity() {
             operation = "x"
             decimal = false
         }
-        equals.setOnClickListener {
-
+        buttonAC.setOnClickListener {
+            firstNumber = ""
+            result = ""
+            operation = ""
+            decimal = false
+            text_number.text = "0"
         }
+        equals.setOnClickListener {
+            when (operation) {
+                "+" -> {
+                    result = ((firstNumber).toDouble() + (result).toDouble()).toString()
+                }
+
+                "-" -> {
+                    result = ((firstNumber).toDouble() - (result).toDouble()).toString()
+                }
+
+                "*" -> {
+                    result = ((firstNumber).toDouble() * (result).toDouble()).toString()
+                }
+
+                "/" -> {
+                    result = ((firstNumber).toDouble() / (result).toDouble()).toString()
+                }
+            }
+            text_number.text = result
+        }
+
     }
 }
