@@ -2,11 +2,15 @@ package com.example.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+
+    var contador:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val button8: Button = findViewById(R.id.button8)
         val button9: Button = findViewById(R.id.button9)
 
-        val text_number: TextView = findViewById(R.id.txt_number)
+
 
         val coma: Button = findViewById(R.id.buttoncoma)
         val plus: Button = findViewById(R.id.buttonplus)
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         var result = ""
         var operation = ""
         var decimal = false
+        val text_number: TextView = findViewById(R.id.txt_number)
 
         //click number0
         button0.setOnClickListener {
@@ -54,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 result += 1
             }
             text_number.text = result
+            contador = contador+1
         }
         button2.setOnClickListener {
             if (decimal) {
@@ -62,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 result += 2
             }
             text_number.text = result
+            contador = contador+1
         }
         button3.setOnClickListener {
             if (decimal) {
@@ -70,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 result += 3
             }
             text_number.text = result
+            contador = contador+1
         }
         button4.setOnClickListener {
             if (decimal) {
@@ -78,6 +86,7 @@ class MainActivity : AppCompatActivity() {
                 result += 4
             }
             text_number.text = result
+            contador = contador+1
         }
         button5.setOnClickListener {
             if (decimal) {
@@ -86,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 result += 5
             }
             text_number.text = result
+            contador = contador+1
         }
         button6.setOnClickListener {
             if (decimal) {
@@ -94,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                 result += 6
             }
             text_number.text = result
+            contador = contador+1
         }
         button7.setOnClickListener {
             if (decimal) {
@@ -102,6 +113,7 @@ class MainActivity : AppCompatActivity() {
                 result += 7
             }
             text_number.text = result
+            contador = contador+1
         }
         button8.setOnClickListener {
             if (decimal) {
@@ -110,6 +122,7 @@ class MainActivity : AppCompatActivity() {
                 result += 8
             }
             text_number.text = result
+            contador = contador+1
         }
         button9.setOnClickListener {
             if (decimal) {
@@ -118,6 +131,7 @@ class MainActivity : AppCompatActivity() {
                 result += 9
             }
             text_number.text = result
+            contador = contador+1
         }
         coma.setOnClickListener {
             decimal = true
@@ -176,5 +190,29 @@ class MainActivity : AppCompatActivity() {
             text_number.text = result
         }
 
+    }
+
+    override fun onResume(){
+        super.onResume()
+        Log.d("Debug","onResume")
+        val text:TextView = findViewById(R.id.txt_number)
+
+        text.text = contador.toString()
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+// Save the user's current game state.
+        outState?.run {
+            putInt("contador", contador)
+        }
+// Always call the superclass so it can save the view hierarchy.
+        super.onSaveInstanceState(outState)
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+// Always call the superclass so it can restore the view hierarchy.
+        super.onRestoreInstanceState(savedInstanceState)
+// Restore state members from saved instance.
+        savedInstanceState?.run {
+            contador = savedInstanceState.getInt("contador")
+        }
     }
 }
